@@ -3,6 +3,10 @@ const yup = require("yup");
 
 //PLACE SCHEMA
 const PlaceSchema = new mongoose.Schema({
+  qr: {
+    type: String,
+    required: true,
+  },
   etage: {
     type: String,
     required: true,
@@ -16,6 +20,7 @@ const PlaceSchema = new mongoose.Schema({
 
 const validatePlace = (place) => {
   const schema = yup.object().shape({
+    qr: yup.string().required(),
     etage: yup.string().required(),
     etat: yup.string().required(),
     

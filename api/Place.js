@@ -8,6 +8,7 @@ router.post("/", async (req, res) => {
 if(error.message) res.status(400).send(error.message);
 
   place = new Place({
+    qr: req.body.qr,
     etage: req.body.etage,
     etat: req.body.etat,
       });
@@ -43,6 +44,7 @@ router.put("/:placeId", async (req, res) => {
   const updatedPlace = await Place.findByIdAndUpdate(
     req.params.placeId,
     {
+    qr: req.body.qr,
     etage: req.body.etage,
     etat: req.body.etat,
     
