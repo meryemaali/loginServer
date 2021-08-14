@@ -32,12 +32,30 @@ router.get("/", (req, res) => {
     });
 });
 
+
 //GET THE place BY ID
-router.get("/:placeId", async (req, res) => {
-  const place = await place.findById(req.params.placeId);
-  if (!place) res.status(404).send("place not found");
-  res.send(place);
+router.get ('/:qr', (req, res) => {
+  Place.findById (req.params.qr)
+    .then (place => {
+      if (place) res.json ({etat: place.etat});
+      res.status (404).send ('erreur:nombre totale');
+    })
+    .catch (error => {
+      res.status (500).send ('ERROR FOUND');
+    });
 });
+
+//put : etat++
+router.put ('/:qr', async (req, res) => {
+  const updatedPlace = await Place.findByIdAndUpdate (
+    req.params.qr,
+    {$dec: {etat: 1}},
+    {new: true}
+  );
+  if (!updatedPlace) res.status (404).send ('QR NON ENREGISTRE');
+  res.send (updatedPlace);
+});
+
 
 //UPDATE place BASED ON ID
 router.put("/:placeId", async (req, res) => {
@@ -62,5 +80,9 @@ router.delete("/:placeId", async (req, res) => {
   if (!place) res.status(404).send("place with id not found");
   res.send(place); 
 });
+
+
+
+
 
 module.exports = router;

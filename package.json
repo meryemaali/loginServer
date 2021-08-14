@@ -4,7 +4,8 @@
   "description": "Backend",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,8 +13,17 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.13.3",
+    "mongoose": "^5.13.5",
     "nodemon": "^2.0.12",
     "yup": "^0.32.9"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meryemaali/loginServer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meryemaali/loginServer/issues"
+  },
+  "homepage": "https://github.com/meryemaali/loginServer#readme"
 }

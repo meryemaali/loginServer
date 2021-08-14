@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
 
 //GET THE entite BY ID
 router.get("/:entiteId", async (req, res) => {
-  const entite = await entite.findById(req.params.entiteId);
+  const entite = await Entite.findById(req.params.entiteId);
   if (!entite) res.status(404).send("entite not found");
   res.send(entite);
 });
