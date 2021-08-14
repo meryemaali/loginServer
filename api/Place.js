@@ -34,11 +34,11 @@ router.get("/", (req, res) => {
 
 
 //GET THE place BY ID
-router.get ('/:qr', (req, res) => {
-  Place.findById (req.params.qr)
+router.get ('/:id', (req, res) => {
+  Place.findById (req.params.id)
     .then (place => {
       if (place) res.json ({etat: place.etat});
-      res.status (404).send ('erreur:nombre totale');
+      res.status (404).send ('erreur:etat');
     })
     .catch (error => {
       res.status (500).send ('ERROR FOUND');
