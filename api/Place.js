@@ -34,7 +34,14 @@ router.get("/", (req, res) => {
 
 
 //GET THE place BY ID
-router.get ('/:id', (req, res) => {
+
+router.get ('/:placeId', async (req, res) => {
+  const place = await Place.findById (req.params.placeId);
+  if (!place) res.status (404).send ('place not found');
+  res.send (place);
+});
+
+/*router.get ('/:id', (req, res) => {
   Place.findById (req.params.id)
     .then (place => {
       if (place) res.json ({etat: place.etat});
@@ -43,7 +50,7 @@ router.get ('/:id', (req, res) => {
     .catch (error => {
       res.status (500).send ('ERROR FOUND');
     });
-});
+});*/
 
 //put : etat++
 router.put ('/:qr', async (req, res) => {
