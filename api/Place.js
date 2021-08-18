@@ -52,16 +52,6 @@ router.get ('/:placeId', async (req, res) => {
     });
 });*/
 
-//put : etat++
-router.put ('/:qr', async (req, res) => {
-  const updatedPlace = await Place.findByIdAndUpdate (
-    req.params.qr,
-    {$dec: {etat: 1}},
-    {new: true}
-  );
-  if (!updatedPlace) res.status (404).send ('QR NON ENREGISTRE');
-  res.send (updatedPlace);
-});
 
 
 //UPDATE place BASED ON ID
