@@ -55,7 +55,7 @@ router.get ('/:placeId', async (req, res) => {
 
 
 //UPDATE place BASED ON ID
-router.put("/:placeId", async (req, res) => {
+/*router.put("/:placeId", async (req, res) => {
   const updatedPlace = await Place.findByIdAndUpdate(
     req.params.placeId,
     {
@@ -69,7 +69,26 @@ router.put("/:placeId", async (req, res) => {
 
   if (!updatedPlace) res.status(404).send("place not found");
   res.send(updatedPlace);
-});
+});*/
+
+router.put("/:placeId", async (req, res) => {
+   const updatedPlace = await Place.findByIdAndUpdate( 
+      req.params.placeId,
+    { $set: { etat: 1 } },
+    
+    { new: false },
+    function(err,model){
+
+      if(err){
+        console.log(err)
+      }
+      else{
+        if(model.etat==='1') return "1";
+        else return "0";
+      }
+    }
+  );
+  });
 
 //DELETE place BASED ON ID
 router.delete("/:placeId", async (req, res) => {
